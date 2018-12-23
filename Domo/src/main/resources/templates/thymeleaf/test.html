@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8" />
+<title></title>
+<!-- 引入js文件 -->
+<script type="text/javascript" th:src="@{/static/js/test.js}"></script>
+</head>
+<body>
+	<!-- 测试th传值1 -->
+	<form>
+		用户名:<input type="text" th:value="${name}"><br> 密码:<input
+			type="text" th:value="${password}">
+	</form>
+
+	<!-- 测试th传值2 -->
+	<form th:object="${user}">
+		用户名:<input type="text" th:value="*{name}"><br> 密码:<input
+			type="text" th:value="*{passWord}"><br> 出生日期:<input
+			type="text"
+			th:value="*{#dates.format(birthday,'yyyy-MM-dd hh:mm:ss')}">
+	</form>
+	<!-- 测试text和utext区别   text原封输出   utext编译后输出 -->
+	<span th:text="${text}"></span>
+	<span th:utext="${text}"></span>
+	<!-- 测试网页连接地址 -->
+	<a th:href="@{http://www.4399.com}">4399网站地址</a>
+	<form th:action="@{/th/postform}" th:object="${user}" method="post">
+		<input type="text" th:field="*{name}">
+		<!-- 测试数值类型 -->
+		<select>
+			<option>请选择</option>
+			<option th:selected="*{age}==18">正好18岁</option>
+			<option th:selected="*{age} lt 18">小于18岁</option>
+			<option th:selected="*{age} le 18">小于等于18岁</option>
+			<option th:selected="*{age} ge 18">大于等于18岁</option>
+		</select> <input type="submit" value="提交">
+	</form>
+	<!-- 测试String类型 -->
+	<div th:if="${name} eq '马仕杰'">666</div>
+	<!-- 测试循环 -->
+	<table border="1">
+		<tr>
+			<th>姓名</th>
+		</tr>
+		<tr th:each="user:${userList}">
+			<td th:text="${user.name}"></td>
+		</tr>
+	</table>
+<!-- 测试switch -->
+	<div th:switch="${name}">
+		<p th:case="马仕杰">系统管理员</p>
+		<p th:case="user">普通用户</p>
+		<p th:case="*">其他用户</p>
+	</div>
+
+</body>
+</html>
