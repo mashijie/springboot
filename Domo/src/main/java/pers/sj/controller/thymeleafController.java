@@ -26,7 +26,7 @@ public class thymeleafController {
 	@RequestMapping("/test")
 	public String test(ModelMap model){
 		//存入单个值
-		model.addAttribute("name", "马仕杰");
+		model.addAttribute("name", "admin");
 		model.addAttribute("password", "123456");
 		//存入对象
 		User user=new User();

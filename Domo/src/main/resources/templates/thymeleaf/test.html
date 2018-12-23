@@ -50,9 +50,8 @@
 <!-- 测试switch -->
 	<div th:switch="${name}">
 		<p th:case="马仕杰">系统管理员</p>
-		<p th:case="user">普通用户</p>
+		<p th:case="#{roles.admin}">普通用户</p><!-- 使用i18n配置属性后可以通过messages里的key获取到value值 -->
 		<p th:case="*">其他用户</p>
 	</div>
-
 </body>
 </html>
